@@ -1,0 +1,16 @@
+<form #registerForm="ngForm" (ngSubmit)="newProject()" autocomplete="off">
+    <h2 class="text-center text-primary">Create New Project</h2>
+    <hr>
+    <div class="mb-3">
+        <input type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="project.name"
+            placeholder="Project Name"
+        >
+    </div>
+    <div class="text-center">
+        <button class="btn btn-success me-2" type="submit">Create</button>
+        <button class="btn btn-default" routerLink='' routerLinkActive="active" type="button" (click)="cancel()">Cancel</button>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+<div class="card mb-4" *ngIf="project">
+    <div class="card-img-wrapper">
+        <img src="{{'./assets/project.PNG'}}" alt="{{project.name}}" class="card-img-top">
+        <ul class="list-inline project-icons animate text-center">
+            <li class="list-inline-item">
+                <button routerLink="projects/{{project.id}}" routerLinkActive="active" class="btn btn-primary"><i class="fa fa-rectangle-list">
+                </i></button>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body p1">
+        <p class="card-text text-muted text-center">{{project.name}}</p>
+    </div>
+</div>
+
+ 
+

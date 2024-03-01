@@ -1,6 +1,18 @@
-@import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
+@import 'dhtmlx-gantt/codebase/skins/dhtmlxgantt_material.css';
 .gantt-chart{
     position: relative;
     width: 100%;
     height: 600px;
 }
+
+.gantt_task_line{
+    background-color: #03A92C;
+    border-radius: 10px;
+}
+
+.gantt_task_line .gantt_task_progress {
+    background-color: #03562C; 
+}
+
+
+.weekend{ background: #d8d8d8 ;}

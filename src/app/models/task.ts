@@ -1,10 +1,10 @@
-export class Task {
-    id!: number;
-    start_date!: string;
-    text!: string;
-    progress!: number;
-    duration!: number;
-    parent!: number;
-    //type!: string;
+export interface Task {
+    id: number;
+    startDate: string;
+    text: string;
+    progress: number;
+    duration: number;
+    parent?: number;
+    type: string;
 
 }
