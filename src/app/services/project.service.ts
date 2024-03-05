@@ -25,4 +25,8 @@ export class ProjectService {
   createProject(project: any){
     return this.http.post<Project>(this.linkUrl + "createproject", project).pipe();
   }
+
+  deleteProject(id: number){
+    return this.http.delete<Project>(this.linkUrl + "project"+`/${id}`).pipe();
+  }
 }

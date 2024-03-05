@@ -7,6 +7,7 @@ import { Project } from '../models/project';
   styleUrls: ['./project-card.component.css']
 })
 export class ProjectCardComponent implements OnInit{
+[x: string]: any;
   @Input() project: Project | undefined;
 
   constructor() { }

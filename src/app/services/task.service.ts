@@ -24,6 +24,7 @@ export class TaskService {
                     start_date: item.startDate, // Adjusted property name
                     duration: item.duration,
                     progress: item.progress,
+                    type: item.type,
                     parent: item.parentId // Adjusted property name
                 }));
                 console.log(data);

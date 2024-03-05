@@ -1,13 +1,25 @@
-<div class="row" (projectCreated) ="onProjectCreated">
-    <div class="col-2" *ngFor="let project of projects$ | async">
-        <app-project-card [project]="project"></app-project-card>
-    </div>
+<div class="row">
+  <ng-container *ngFor="let project of (projects$ | async); let last = last">
+      <div class="col-2">
+          <app-project-card [project]="project"></app-project-card>
+      </div>
+      <!-- Display the "Create New Project" button after the last card -->
+      <div class="col-2" *ngIf="last">
+        <div class="card mb-4">
+          <div class="card-img-wrapper">
+              <button routerLink="create-project" routerLinkActive="active" class="btn btn-primary" style="background-color: transparent; border: none;">
+                  <img src="./assets/plus.svg"  class="card-img-top">
+              </button>
+              <ul class="list-inline project-icons animate text-center">
+                  <li class="list-inline-item">
+                      <i class="fa fa-rectangle-list"></i>
+                  </li>
+              </ul>
+          </div>
+          <div class="card-body p1">
+              <p class="card-text text-muted text-center">Create Project</p>
+          </div>
+      </div>
+      </div>
+  </ng-container>
 </div>
-
-<div class="row justify-content-center">
-  <div class="col-md-4">
-    <button class="btn btn-primary btn-lg" routerLink="create-project" routerLinkActive="active">Create New Project</button>
-  </div>
-</div>
-
-

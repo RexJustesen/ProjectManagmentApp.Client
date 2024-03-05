@@ -24,6 +24,12 @@ export class GanttComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
+        var opts = [
+            {key: 'project', label: 'Project'},
+            {key: 'task', label: 'Task'},
+            {key: 'milestone', label: 'Milestone'}
+        ]
+
         var projectid = this.route.snapshot.paramMap.get('id')
         console.log(projectid);
 
@@ -44,12 +50,22 @@ export class GanttComponent implements OnInit, OnDestroy {
             auto_scheduling: true,
           })
 
+          
+
         gantt.config.columns = [
             { name: 'id', label: 'ID', tree: false, align: "center", width: 75, resize: true },
             { name: 'text', label: 'Task name', align: "center", tree: true, width: '150' , resize: true },
             { name: 'start_date', label: 'Start date', align: "center", tree: false, width: '150', resize: true },
             { name: 'duration', label: 'Duration', align: "center", tree: false, width: '70', resize: true },
             { name: "add", width: 44, resize: true }
+        ];
+
+        gantt.config.lightbox.sections =[
+            {name:"Description", height: 38, map_to: "text", type:"texatarea", focus:true},
+            {name:"description",     height:45, map_to:"text", type:"textarea"},
+            {name: "type",       height: 38, map_to:"type", type:"select", options: opts},
+            {name:"time",        height:72, map_to:"auto", type:"duration"}
+
         ];
 
 
