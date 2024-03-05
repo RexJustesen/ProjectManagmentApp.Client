@@ -3,6 +3,17 @@
     position: relative;
 }
 
+.card-img-wrapper button {
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Added opacity transition property */
+}
+
+.card-img-wrapper button:hover {
+    transform: scale(1.1); /* Adjust scaling factor as needed */
+    opacity: 0.8; /* Adjust opacity value as needed */
+}
+
 .project-icons {
     position: absolute;
     bottom: -30%;
@@ -11,9 +22,10 @@
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Added transition properties */
 }
 
-.card-img-wrapper:hover .project-icons{
+.card-img-wrapper:hover .project-icons {
     bottom: 0;
     opacity: 1;
 }
