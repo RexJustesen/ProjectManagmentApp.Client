@@ -1,25 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Project } from '../models/project';
-import { firstValueFrom, of, map } from 'rxjs';
+import { firstValueFrom, of, map, Observable } from 'rxjs';
 import { HandleError } from './service-helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private linkUrl = 'http://localhost:8000/api/';
+  private linkUrl = 'https://localhost:8001/api/';
   projects: Project[] = [];
   constructor(private http: HttpClient) {}
 
-  getProjects(){
-    if (this.projects.length >0) return of(this.projects);
-    return this.http.get<Project[]>(this.linkUrl + "project").pipe(
-      map(projects => {
-        this.projects = projects;
-        return projects;
+  getProjects(): Observable<Project[]> {
+    return this.http.get<any>(this.linkUrl + "project").pipe(
+      map(response => {
+        if (response) {
+          return response.map((projectData: any) => ({
+            id: projectData.id,
+            name: projectData.name,
+            // Map other properties as needed
+            // Example:
+            // tickets: projectData.tickets,
+            // links: projectData.links,
+          } as Project));
+        } else {
+          console.error('Invalid response format:', response);
+          return [];
+        }
       })
-    )
+    );
   }
 
   createProject(project: any){

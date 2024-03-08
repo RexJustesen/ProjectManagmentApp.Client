@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalRService } from './services/signalR.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'client';
 
-  constructor() { }
+  constructor(private signalRService: SignalRService) {
+    this.signalRService.startProjectConnection(); // Start SignalR connection
+   }
 
   ngOnInit(): void {
     

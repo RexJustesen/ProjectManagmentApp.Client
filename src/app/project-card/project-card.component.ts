@@ -13,7 +13,7 @@ export class ProjectCardComponent implements OnInit{
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.project?.id);
+    //console.log(this.project?.id);
   }
 
 }

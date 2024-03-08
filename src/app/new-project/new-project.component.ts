@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProjectService } from '../services/project.service';
 import { Router } from '@angular/router';
+import { SignalRService } from '../services/signalR.service';
 
 @Component({
   selector: 'app-new-project',
@@ -13,23 +14,30 @@ export class NewProjectComponent  implements OnInit{
   project: any = {}
 
 
-  constructor(private projectService: ProjectService, private router: Router) { }
+  constructor(
+    private projectService: ProjectService,
+    private router: Router,
+    private signalRService: SignalRService // Inject SignalRService
+  ) {}
 
   ngOnInit(): void {
     
   }
 
-  newProject(){
+  newProject() {
     this.projectService.createProject(this.project).subscribe({
       next: () => {
-        this.projectCreated.emit();
+        console.log(this.project.name);
+        // Emit event to signal that a new project is created
+        this.signalRService.projectUpdateReceived.next(this.project.name); 
         this.router.navigate(['/']);
       },
       error: error => {
         console.log(error);
       }
-    })
+    });
   }
+  
 
   cancel() {
     this.CancelCreate.emit();

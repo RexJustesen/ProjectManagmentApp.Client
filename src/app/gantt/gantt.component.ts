@@ -20,7 +20,7 @@ export class GanttComponent implements OnInit, OnDestroy {
     @ViewChild('gantt_here', { static: true }) ganttContainer!: ElementRef;
    
 
-    constructor(private taskService: TaskService, private linkService: LinkService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private taskService: TaskService,private linkService: LinkService, private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
 
@@ -33,6 +33,7 @@ export class GanttComponent implements OnInit, OnDestroy {
         var projectid = this.route.snapshot.paramMap.get('id')
         console.log(projectid);
 
+        gantt.config.open_tree_initially = true;
         gantt.config.date_format = '%Y-%m-%d %H:%i';
         gantt.config.work_time = true;
         gantt.config.correct_work_time = true;
@@ -43,7 +44,7 @@ export class GanttComponent implements OnInit, OnDestroy {
         gantt.plugins({
             grouping: true,
             keyboard_navigation: true,
-            //quick_info: true,
+            quick_info: true,
             tooltip: true,
             marker: true,
             overlay: true,
@@ -104,7 +105,7 @@ export class GanttComponent implements OnInit, OnDestroy {
         Promise.all([this.taskService.getTasks(projectid), this.linkService.getLinks(projectid)])
         .then(([data, links]) => {
             console.log(data);
-            //console.log('Links:', JSON.stringify(links));
+            console.log('Links:', JSON.stringify(links));
             gantt.parse({ data, links });
             gantt.sort("start_date", false);
         });

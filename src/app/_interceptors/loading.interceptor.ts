@@ -5,7 +5,8 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
-import { Observable, delay, finalize } from 'rxjs';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { BusyService } from '../services/busy.service';
 
 @Injectable()
@@ -17,11 +18,11 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.busyService.busy();
 
     return next.handle(request).pipe(
-      delay(1500),
       finalize(() => {
+        // Mark as idle only after the HTTP request is complete
         this.busyService.idle();
         console.log("Not spinning");
       })
-    )
+    );
   }
 }

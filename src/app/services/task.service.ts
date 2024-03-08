@@ -6,7 +6,7 @@ import { HandleError } from './service-helper';
 
 @Injectable()
 export class TaskService {
-    private ticketUrl = 'http://localhost:8000/api/project/';
+    private ticketUrl = 'https://localhost:8001/api/project/';
     tasks: Task[] = [];
 
     constructor(private http: HttpClient) {}

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class LinkService {
-    private linkUrl = 'http://localhost:8000/api/project/';
+    private linkUrl = 'https://localhost:8001/api/project/';
     constructor(private http: HttpClient) {}
     async getLinks(projectId: string): Promise<Link[]> {
         try {
