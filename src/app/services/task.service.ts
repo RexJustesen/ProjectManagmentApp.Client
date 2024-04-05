@@ -22,7 +22,9 @@ export class TaskService {
                     id: item.id,
                     text: item.text,
                     start_date: item.startDate, // Adjusted property name
+                    planned_start_date: item.plannedStartDate,
                     duration: item.duration,
+                    planned_end: item.plannedEnd,
                     progress: item.progress,
                     type: item.type,
                     parent: item.parentId // Adjusted property name
