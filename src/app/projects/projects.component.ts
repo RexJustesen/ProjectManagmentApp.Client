@@ -41,12 +41,14 @@ export class ProjectsComponent implements OnInit, OnDestroy {
     });
   }
 
+  
+
   subscribeToProjectUpdates() {
     // Subscribe to project update events from SignalRService
     console.log("signalr handler");
     this.projectUpdateSubscription = this.signalRService.projectUpdateReceived.subscribe(() => {
       console.log("getting projects");
-      // Reload projects when a new project is created
+      // Reload projects when a new project is created or deleted
       this.loadProjects();
     });
   }

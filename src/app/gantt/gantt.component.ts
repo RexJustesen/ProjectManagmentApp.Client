@@ -8,7 +8,6 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { SignalRService } from '../services/signalR.service';
 import { DatePipe } from '@angular/common';
-import { formatDate } from '@angular/common';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -21,7 +20,8 @@ import { formatDate } from '@angular/common';
 export class GanttComponent implements OnInit, OnDestroy {
     @ViewChild('gantt_here', { static: true }) ganttContainer!: ElementRef;
     private taskUpdateSubscription: Subscription | undefined; // Subscription for project updates
-
+    private routeSubscription: Subscription | undefined; // Subscription for route changes
+    private projectid: string | null = null;
    
 
     constructor(private taskService: TaskService,
@@ -33,14 +33,25 @@ export class GanttComponent implements OnInit, OnDestroy {
          ) { }
 
     ngOnInit() {
+        this.routeSubscription = this.route.paramMap.subscribe(params => {
+            this.projectid = params.get('id');
+            
+            console.log(this.projectid);
+      
+            // Reinitialize the Gantt chart with the new project ID
+            this.initializeGantt(this.projectid);
+          });
 
+    }
+
+    initializeGantt(projectid:string | null){
         var opts = [
             {key: 'project', label: 'Project'},
             {key: 'task', label: 'Task'},
             {key: 'milestone', label: 'Milestone'}
         ]
 
-        var projectid = this.route.snapshot.paramMap.get('id')
+
         console.log(projectid);
 
         gantt.config.auto_scheduling = true;
@@ -138,7 +149,7 @@ export class GanttComponent implements OnInit, OnDestroy {
 
         if(!(gantt as any).$_initOnce){
             (gantt as any).$_initOnce = true;
-
+        } else {
             const dp = gantt.createDataProcessor({
                 task: {
                     update: (data: Task) => this.taskService.update(projectid as string,data),
@@ -203,21 +214,20 @@ export class GanttComponent implements OnInit, OnDestroy {
             text: dateToStr(today),
             title: "Today: " + dateToStr(today)
         });
-
-
     }
 
     ngOnDestroy(): void {
         gantt.clearAll();
-        if (this.taskUpdateSubscription) {
-            this.taskUpdateSubscription.unsubscribe();
-          }
+    if (this.taskUpdateSubscription) {
+      this.taskUpdateSubscription.unsubscribe();
+    }
+    this.projectid = null;
       }
 
     loadGanttChart(projectid: any){
         gantt.clearAll();
         if (!projectid) return;
-        Promise.all([this.taskService.getTasks(projectid), this.linkService.getLinks(projectid)])
+        Promise.all([this.taskService.getTasks(projectid), this.linkService.get(projectid)])
         .then(([data, links]) => {
             console.log(data);
             console.log('Links:', JSON.stringify(links));

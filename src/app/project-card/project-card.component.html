@@ -10,9 +10,19 @@
                 </ul>
             </button>
         </div>
-        <div class="card-body p1">
-            <p class="card-text text-muted text-center">{{ project.name }}</p>
-        </div>
+        <div class="card-body p1 d-flex align-items-center justify-content-between">
+            <p class="card-text text-muted text-center flex-grow-1 m-0">{{ project.name }}</p>
+            <div class="dropdown">
+                <button class="btn btn-link p-0 ms-auto" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots-vertical" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                    </svg>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li><button class="dropdown-item" type="button" (click)="deleteProject(project.id, project.name)">Delete Project</button></li>
+                </ul>
+            </div>
+        </div>        
     </div>
 </div>
 

@@ -41,8 +41,8 @@ export class TaskService {
     }
 
     async insert(projectId: string,task: Task): Promise<Task> {
-        //console.log('Task to be inserted:', JSON.stringify(task));
-        
+        console.log('Task to be inserted:', JSON.stringify(task));
+        console.log(projectId)
         // Remove the id field from the task object
         task.id = 0;
         console.log(JSON.stringify(task));
@@ -51,6 +51,7 @@ export class TaskService {
     
         return firstValueFrom(this.http.post<any>(this.ticketUrl + projectId + "/tickets" ,JSON.stringify(task), { headers }))
             .then(response => {
+                console.log(response as Task);
                 return response as Task; 
             })
             .catch(error => {

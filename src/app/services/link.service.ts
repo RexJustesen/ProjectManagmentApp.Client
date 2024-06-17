@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class LinkService {
     private linkUrl = 'https://localhost:8001/api/project/';
     constructor(private http: HttpClient) {}
-    async getLinks(projectId: string): Promise<Link[]> {
+    async get(projectId: string): Promise<Link[]> {
         try {
             const response = await firstValueFrom(this.http.get<any>(this.linkUrl + projectId + "/links"));
             console.log(JSON.stringify(response));
