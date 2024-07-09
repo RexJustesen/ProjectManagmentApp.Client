@@ -6,6 +6,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
+This application uses the project management api developed by Rex justesen. The project management api is developed in C# using .Net 7. This api needs to be running in order to render the components correctly. here is the link: https://github.com/RexJustesen/ProjectManagmentApp
+
+## Note
+I am using DHTMLX (https://dhtmlx.com) for the gantt chart component. This has created a commonjs dependency so the application compiles with a warning which I have suppressed in the angular.json file. Currently dhtmlx does not have an es6 module and so for this specific application I am using it as a commonjs dependency. 
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
