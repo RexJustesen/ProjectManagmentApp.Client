@@ -45,7 +45,7 @@ This application is a simple project management application. It has a way to cre
 
 2. Once a project is created it will be a new card next to the "Create New Project" card with the name given to it. If you click on this card it will go to the gantt chart page. In the gantt chart page you can create new tasks with the following labels 
 
-- Project: This does not take into account a start date or duration given to it by the user but rather subtasks can be created underneath and its duration will be the total duration of all subtasks. To add subtask to anythin in the gantt chart you need to click the blue "+" sign next to that task's name. 
+- Project: This does not take into account a start date or duration given to it by the user but rather subtasks can be created underneath and its duration will be the total duration of all subtasks. To add subtask to any project or task in the gantt chart you need to click the blue "+" sign next to that task's name. 
 - Task: This is the standard task component and it takes into account the start date and duration and will extend from the start date to the end date determined by the duration. It automatically accounts for weekends and so if the duration extends into a weekend it will automatically jump to the next available work day. 
 - Milestone: This will a daimond and typically is indicative of a project end data. It only takes into account the start date and the start date is the milestone due date as the milestone is only for one day. 
 
