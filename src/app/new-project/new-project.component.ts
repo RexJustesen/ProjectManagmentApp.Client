@@ -28,7 +28,7 @@ export class NewProjectComponent  implements OnInit{
     this.projectService.createProject(this.project).subscribe({
       next: () => {
         console.log(this.project.name);
-        // Emit event to signal that a new project is created
+        // Emit event to signaRl that a new project is created
         this.signalRService.projectUpdateReceived.next(this.project.name); 
         this.router.navigate(['/']);
       },
