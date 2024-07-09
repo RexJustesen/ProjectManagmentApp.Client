@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 })
 
 export class SignalRService {
+    //connection used to connect to SignalR hub in project management API
     private hubConnection: signalR.HubConnection | undefined;
 
     public projectUpdateReceived = new Subject<string>();
