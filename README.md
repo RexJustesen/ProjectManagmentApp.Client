@@ -4,6 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+After cloning the repository navigate to the root of the cloned repository and run the following command to install the required dependencies: 
+```bash
+npm install
+```
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 This application uses the project management api developed by Rex justesen. The project management api is developed in C# using .Net 7. This api needs to be running in order to render the components correctly. here is the link: https://github.com/RexJustesen/ProjectManagmentApp
